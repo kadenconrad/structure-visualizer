@@ -1,5 +1,6 @@
 from src.models._array import Array
 
+
 def binary_search(nums: Array, target):
     if nums.size == 0:
         return -1

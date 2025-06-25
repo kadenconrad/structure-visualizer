@@ -7,8 +7,8 @@ def shell_sort(nums):
             j = i
             while j > 0 and nums.get_index_data(j) < nums.get_index_data(j - gap):
                 temp = nums.get_index_data(j)
-                nums.set_index(j, nums.get_index_data(j-gap))
-                nums.set_index(j-gap, temp)
+                nums.set_index(j, nums.get_index_data(j - gap))
+                nums.set_index(j - gap, temp)
                 j -= gap
-        gap //=2
+        gap //= 2
     return nums
