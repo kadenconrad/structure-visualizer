@@ -1,33 +1,46 @@
-def merge_sort(nums):
-    if len(nums) <= 1:
+from src.models._array import Array
+def merge_sort(nums: Array):
+    if len(nums.memory) <= 1:
         return nums
-    mid = len(nums) // 2
+    mid = len(nums.memory) // 2
 
-    l_half = nums[:mid]
-    r_half = nums[mid:]
+    l_half = Array(array_type=nums.array_type, size=len(nums.memory[:mid]), max_str_length=nums.str_arr_length-1 if nums.array_type == "str" else None)
+    
+    for i in range(len(nums.memory[:mid])):
+        l_half.set_index(i, nums.get_index_data(i))
+    
+
+
+    r_half = Array(array_type=nums.array_type, size=len(nums.memory[mid:]), max_str_length=nums.str_arr_length-1 if nums.array_type == "str" else None)
+    for i in range(len(nums.memory[mid:])):
+        r_half.set_index(i, nums.get_index_data(i+mid))
 
     sorted_l = merge_sort(l_half)
     sorted_r = merge_sort(r_half)
 
-    return merge(sorted_l, sorted_r)
+    return merge(sorted_l, sorted_r, nums)
 
-def merge(sorted_l, sorted_r):
-    result = []
-    l = 0
-    r = 0
-
-    while l < len(sorted_l) and r < len(sorted_r):
-        if sorted_l[l] <= sorted_r[r]:
-            result.append[l]
-            l += 1
+def merge(l: Array, r: Array, nums: Array):
+    # i = left index, j = right index;
+    i = 0
+    j = 0
+    idx = 0
+    while i < len(l.memory) and j < len(r.memory):
+        if l.get_index_data(i) <= r.get_index_data(j):
+            nums.set_index(idx, l.get_index_data(i))
+            idx += 1
+            i += 1
         else:
-            result.append[r]
-            r += 1
-    while l < len(sorted_l):
-        result.append(sorted_l[l])
-        l += 1
-    while r < len(sorted_l):
-        result.append(sorted_r[r])
-        r += 1
-    return result
-        
+            nums.set_index(idx, r.get_index_data(j))
+            idx += 1
+            j += 1
+    while i < len(l.memory):
+        nums.set_index(idx, l.get_index_data(i))
+        idx += 1
+        i += 1
+    while j < len(r.memory):
+        nums.set_index(idx, r.get_index_data(j))
+        idx += 1
+        j += 1
+
+    return nums

@@ -1,11 +1,14 @@
 def shell_sort(nums):
-    gap = len(nums) // 2
+    if nums.size <= 1:
+        return nums
+    gap = nums.size // 2
     while gap > 0:
-        i = 0
-        for i in range(gap, len(nums)):
+        for i in range(gap, nums.size):
             j = i
-            while j > 0 and nums[j-gap] > nums[j]:
-                nums[j-gap], nums[j] = nums[j], nums[j-gap]
+            while j > 0 and nums.get_index_data(j) < nums.get_index_data(j - gap):
+                temp = nums.get_index_data(j)
+                nums.set_index(j, nums.get_index_data(j-gap))
+                nums.set_index(j-gap, temp)
                 j -= gap
-        gap //= 2 
+        gap //=2
     return nums

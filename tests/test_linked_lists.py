@@ -1,11 +1,6 @@
 import pytest
-import sys
-import os
-from io import StringIO
-
 from src.models.singly_LL import SLLNode, SinglyLL
 from src.models.doublyLL import DLLNode, DoublyLL
-
 
 class TestSLLNode:
     def test_node_creation(self):
@@ -14,7 +9,6 @@ class TestSLLNode:
         assert node.next is None
     
     def test_node_with_different_data_types(self):
-        """Test node creation with different data types"""
         node_int = SLLNode(5)
         node_str = SLLNode("hello")
         node_list = SLLNode([1, 2, 3])
@@ -25,23 +19,19 @@ class TestSLLNode:
 
 
 class TestSinglyLL:
-    """Test cases for SinglyLL class"""
     
     def test_empty_list_creation(self):
-        """Test creating an empty singly linked list"""
         sll = SinglyLL()
         assert sll.head is None
         assert sll.tail is None
     
     def test_display_empty_list(self, capsys):
-        """Test displaying an empty list"""
         sll = SinglyLL()
         sll.display()
         captured = capsys.readouterr()
         assert captured.out == "Nothing to display.\n"
     
     def test_append_single_element(self):
-        """Test appending a single element"""
         sll = SinglyLL()
         sll.append(42)
         
@@ -52,7 +42,6 @@ class TestSinglyLL:
         assert sll.head.next is None
     
     def test_append_multiple_elements(self):
-        """Test appending multiple elements"""
         sll = SinglyLL()
         sll.append(1)
         sll.append(2)
@@ -65,7 +54,6 @@ class TestSinglyLL:
         assert sll.tail.next is None
     
     def test_append_node_object(self):
-        """Test appending a SLLNode object directly"""
         sll = SinglyLL()
         node = SLLNode(99)
         sll.append(node)
@@ -75,7 +63,6 @@ class TestSinglyLL:
         assert sll.head.data == 99
     
     def test_prepend_single_element(self):
-        """Test prepending a single element"""
         sll = SinglyLL()
         sll.prepend(42)
         
@@ -85,7 +72,6 @@ class TestSinglyLL:
         assert sll.head.data == 42
     
     def test_prepend_multiple_elements(self):
-        """Test prepending multiple elements"""
         sll = SinglyLL()
         sll.prepend(1)
         sll.prepend(2)
@@ -97,7 +83,6 @@ class TestSinglyLL:
         assert sll.tail.data == 1
     
     def test_prepend_node_object(self):
-        """Test prepending a SLLNode object directly"""
         sll = SinglyLL()
         node = SLLNode(99)
         sll.prepend(node)
@@ -107,7 +92,6 @@ class TestSinglyLL:
         assert sll.head.data == 99
     
     def test_search_existing_value(self):
-        """Test searching for an existing value"""
         sll = SinglyLL()
         sll.append(1)
         sll.append(2)
@@ -118,7 +102,6 @@ class TestSinglyLL:
         assert result == sll.head.next
     
     def test_search_nonexistent_value(self):
-        """Test searching for a non-existent value"""
         sll = SinglyLL()
         sll.append(1)
         sll.append(2)
@@ -128,14 +111,12 @@ class TestSinglyLL:
             sll.search(99)
     
     def test_search_empty_list(self):
-        """Test searching in an empty list"""
         sll = SinglyLL()
         
         with pytest.raises(ValueError, match="Value 1 not found in list."):
             sll.search(1)
     
     def test_insert_after_value(self):
-        """Test inserting after a specific value"""
         sll = SinglyLL()
         sll.append(1)
         sll.append(3)
@@ -148,7 +129,6 @@ class TestSinglyLL:
         assert sll.tail.data == 3
     
     def test_insert_after_node(self):
-        """Test inserting after a specific node"""
         sll = SinglyLL()
         sll.append(1)
         sll.append(3)
@@ -161,7 +141,6 @@ class TestSinglyLL:
         assert sll.head.next.next.data == 3
     
     def test_insert_after_tail(self):
-        """Test inserting after the tail node"""
         sll = SinglyLL()
         sll.append(1)
         sll.append(2)
@@ -172,7 +151,6 @@ class TestSinglyLL:
         assert sll.head.next.next.data == 3
     
     def test_insert_after_empty_list(self):
-        """Test inserting into an empty list"""
         sll = SinglyLL()
         sll.insert_after(None, 42)
         
@@ -181,7 +159,6 @@ class TestSinglyLL:
         assert sll.head == sll.tail
     
     def test_remove_after_value(self):
-        """Test removing the node after a specific value"""
         sll = SinglyLL()
         sll.append(1)
         sll.append(2)
@@ -194,7 +171,6 @@ class TestSinglyLL:
         assert sll.tail.data == 3
     
     def test_remove_after_node(self):
-        """Test removing the node after a specific node"""
         sll = SinglyLL()
         sll.append(1)
         sll.append(2)
@@ -207,7 +183,6 @@ class TestSinglyLL:
         assert sll.head.next.data == 3
     
     def test_remove_after_none_removes_head(self):
-        """Test removing after None removes the head"""
         sll = SinglyLL()
         sll.append(1)
         sll.append(2)
@@ -220,7 +195,6 @@ class TestSinglyLL:
         assert sll.tail.data == 3
     
     def test_remove_after_none_single_element(self):
-        """Test removing after None when list has single element"""
         sll = SinglyLL()
         sll.append(1)
         
@@ -230,7 +204,6 @@ class TestSinglyLL:
         assert sll.tail is None
     
     def test_display_populated_list(self, capsys):
-        """Test displaying a populated list"""
         sll = SinglyLL()
         sll.append(1)
         sll.append(2)
@@ -242,17 +215,13 @@ class TestSinglyLL:
 
 
 class TestDLLNode:
-    """Test cases for DLLNode class"""
-    
     def test_node_creation(self):
-        """Test creating a new DLL node"""
         node = DLLNode(42)
         assert node.data == 42
         assert node.next is None
         assert node.prev is None
     
     def test_node_with_different_data_types(self):
-        """Test node creation with different data types"""
         node_int = DLLNode(5)
         node_str = DLLNode("hello")
         node_list = DLLNode([1, 2, 3])
@@ -263,23 +232,18 @@ class TestDLLNode:
 
 
 class TestDoublyLL:
-    """Test cases for DoublyLL class"""
-    
     def test_empty_list_creation(self):
-        """Test creating an empty doubly linked list"""
         dll = DoublyLL()
         assert dll.head is None
         assert dll.tail is None
     
     def test_display_empty_list(self, capsys):
-        """Test displaying an empty list"""
         dll = DoublyLL()
         dll.display()
         captured = capsys.readouterr()
         assert captured.out == "Nothing to display.\n"
     
     def test_append_single_element(self):
-        """Test appending a single element"""
         dll = DoublyLL()
         dll.append(42)
         
@@ -291,7 +255,6 @@ class TestDoublyLL:
         assert dll.head.prev is None
     
     def test_append_multiple_elements(self):
-        """Test appending multiple elements"""
         dll = DoublyLL()
         dll.append(1)
         dll.append(2)
@@ -310,7 +273,6 @@ class TestDoublyLL:
         assert dll.tail.next is None
     
     def test_append_node_object(self):
-        """Test appending a DLLNode object directly"""
         dll = DoublyLL()
         node = DLLNode(99)
         dll.append(node)
@@ -320,7 +282,6 @@ class TestDoublyLL:
         assert dll.head.data == 99
     
     def test_prepend_single_element(self):
-        """Test prepending a single element"""
         dll = DoublyLL()
         dll.prepend(42)
         
@@ -330,7 +291,6 @@ class TestDoublyLL:
         assert dll.head.data == 42
     
     def test_prepend_multiple_elements(self):
-        """Test prepending multiple elements"""
         dll = DoublyLL()
         dll.prepend(1)
         dll.prepend(2)
@@ -347,7 +307,6 @@ class TestDoublyLL:
         assert dll.tail.prev.prev.data == 3
     
     def test_prepend_node_object(self):
-        """Test prepending a DLLNode object directly"""
         dll = DoublyLL()
         node = DLLNode(99)
         dll.prepend(node)
@@ -356,7 +315,6 @@ class TestDoublyLL:
         assert dll.tail == node
     
     def test_search_existing_value(self):
-        """Test searching for an existing value"""
         dll = DoublyLL()
         dll.append(1)
         dll.append(2)
@@ -367,7 +325,6 @@ class TestDoublyLL:
         assert result == dll.head.next
     
     def test_search_nonexistent_value(self):
-        """Test searching for a non-existent value"""
         dll = DoublyLL()
         dll.append(1)
         dll.append(2)
@@ -377,14 +334,12 @@ class TestDoublyLL:
             dll.search(99)
     
     def test_search_empty_list(self):
-        """Test searching in an empty list"""
         dll = DoublyLL()
         
         with pytest.raises(ValueError, match="Value 1 not found in list."):
             dll.search(1)
     
     def test_insert_after_value(self):
-        """Test inserting after a specific value"""
         dll = DoublyLL()
         dll.append(1)
         dll.append(3)
@@ -401,7 +356,6 @@ class TestDoublyLL:
         assert dll.tail.prev.prev.data == 1
     
     def test_insert_after_node(self):
-        """Test inserting after a specific node"""
         dll = DoublyLL()
         dll.append(1)
         dll.append(3)
@@ -416,7 +370,6 @@ class TestDoublyLL:
         assert new_node.next.data == 3
     
     def test_insert_after_tail(self):
-        """Test inserting after the tail node"""
         dll = DoublyLL()
         dll.append(1)
         dll.append(2)
@@ -428,7 +381,6 @@ class TestDoublyLL:
         assert dll.tail.next is None
     
     def test_insert_after_none(self):
-        """Test inserting after None (empty list)"""
         dll = DoublyLL()
         dll.insert_after(None, 42)
         
@@ -437,7 +389,6 @@ class TestDoublyLL:
         assert dll.head == dll.tail
     
     def test_remove_value_middle_node(self):
-        """Test removing a middle node"""
         dll = DoublyLL()
         dll.append(1)
         dll.append(2)
@@ -446,7 +397,6 @@ class TestDoublyLL:
         node_to_remove = dll.search(2)
         dll.remove_value(node_to_remove)
         
-        # Check links are properly updated
         assert dll.head.data == 1
         assert dll.head.next.data == 3
         assert dll.tail.data == 3
@@ -457,7 +407,6 @@ class TestDoublyLL:
         assert node_to_remove.prev is None
     
     def test_remove_value_head_node(self):
-        """Test removing the head node"""
         dll = DoublyLL()
         dll.append(1)
         dll.append(2)
@@ -475,7 +424,6 @@ class TestDoublyLL:
         assert head_node.prev is None
     
     def test_remove_value_tail_node(self):
-        """Test removing the tail node"""
         dll = DoublyLL()
         dll.append(1)
         dll.append(2)
@@ -493,7 +441,6 @@ class TestDoublyLL:
         assert tail_node.prev is None
     
     def test_remove_value_single_node(self):
-        """Test removing the only node in the list"""
         dll = DoublyLL()
         dll.append(42)
         
@@ -508,7 +455,7 @@ class TestDoublyLL:
         assert node.prev is None
     
     def test_display_populated_list(self, capsys):
-        """Test displaying a populated list"""
+
         dll = DoublyLL()
         dll.append(1)
         dll.append(2)
@@ -521,10 +468,8 @@ class TestDoublyLL:
 
 # Integration tests
 class TestLinkedListIntegration:
-    """Integration tests combining multiple operations"""
     
     def test_singly_linked_list_complex_operations(self):
-        """Test complex sequence of operations on singly linked list"""
         sll = SinglyLL()
         
         # Build list: 1 -> 2 -> 3
@@ -552,7 +497,6 @@ class TestLinkedListIntegration:
         assert sll.tail.data == 3
     
     def test_doubly_linked_list_complex_operations(self):
-        """Test complex sequence of operations on doubly linked list"""
         dll = DoublyLL()
         
         # Build list: 1 <-> 2 <-> 3
