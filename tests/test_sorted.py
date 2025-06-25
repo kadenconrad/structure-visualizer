@@ -3,6 +3,8 @@ import pytest
 from random import randint
 from src.models._array import Array
 
+# run `pytest tests/test_sorted` from root directory to test
+
 case1 = Array("uint", 9)
 case1.populate()
 case2 = Array("int", 5)

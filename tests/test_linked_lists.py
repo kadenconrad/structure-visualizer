@@ -2,6 +2,8 @@ import pytest
 from src.models.singly_LL import SLLNode, SinglyLL
 from src.models.doublyLL import DLLNode, DoublyLL
 
+# run `pytest tests/test_linked_lists` from root directory
+
 class TestSLLNode:
     def test_node_creation(self):
         node = SLLNode(42)
@@ -472,7 +474,7 @@ class TestLinkedListIntegration:
     def test_singly_linked_list_complex_operations(self):
         sll = SinglyLL()
         
-        # Build list: 1 -> 2 -> 3
+        # 1 -> 2 -> 3
         sll.append(1)
         sll.append(2)
         sll.append(3)

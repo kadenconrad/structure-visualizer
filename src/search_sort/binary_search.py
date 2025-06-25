@@ -15,11 +15,3 @@ def binary_search(nums: Array, target):
         else:
             high = mid - 1
     return -1
-        
-nums = Array("int", 5)
-nums.populate(lower_bound=-5, upper_bound=42)
-search_for = nums.memory[3]
-
-bs = binary_search(nums, search_for)
-
-print(bs)

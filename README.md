@@ -20,9 +20,7 @@ More info on the array class [here](#structure)
 ### Structure
 ``` 
 .
-.
 ├── __init__.py
-├── __pycache__
 │   └── QueueVisualizer.cpython-313.pyc
 ├── ArrayVisualizer.py
 ├── notes
@@ -70,7 +68,7 @@ More info on the array class [here](#structure)
 │       ├── merge_sort.py
 │       ├── quicksort.py
 │       ├── selection_sort.py
-│       ├── shell_sort.py
+│       └── shell_sort.py
 └── tests
     ├── __init__.py
     ├── test_array.py
@@ -78,7 +76,7 @@ More info on the array class [here](#structure)
     └── test_sorted.py
 ```
 **Notes**:
-- `__init__.py`: All empty. Please make sure these remain intact inside every subdirectory and on the root level. The codebase **will not work** otherwise.
+- `__init__.py`: All empty. Make sure these remain intact inside every subdirectory and on the root level. The codebase **will not work** otherwise.
 - `src/models/_array.py`: Python implementation of a *fixed-type*, *fixed-length* array, using the `ctypes` module. There are The actual, accessible array is found in the attribute `self.memory`. It is NOT dynamic and it IS NOT a Python `list` and therefore it cannot use Python list methods. It can ONLY use the methods created in the class.
 - `src/search_sort.py`: Contains `binary_search`, `selection_sort`, `insertion_sort`, `shell_sort`, `quicksort`, and `merge_sort` functions (and utility functions, i.e., `partition`).
 - `visualizer.py`: Contains the queue and array terminal based visualizers that rely on the `colorama` module for cross-platform colored terminal text.
@@ -87,3 +85,6 @@ More info on the array class [here](#structure)
 - If you see strange characters instead of colors (e.g., ][0m [), make sure your terminal supports ANSI.
     - If you're running the code in the `Output` tab, try running it in a dedicated terminal.
     -If you're on Windows and having issues, try running `python -m colorama.init()`
+
+---
+Haven't done anything w/ deque or stack yet.

@@ -1,8 +1,7 @@
 import pytest
-from io import StringIO
-
 from src.models._array import Array, get_random_words, set_upper, set_lower, TYPE_MAPPINGS
 
+# run `pytest tests/test_array` from root directory to test
 
 class TestArrayInitialization:
     def test_valid_int_array_creation(self):
@@ -80,7 +79,7 @@ class TestArrayIndexAccess:
         
         assert arr.get_index_data(0) == "hello"
         assert arr.get_index_data(1) == "world"
-        assert arr.get_index_data(2) == ""  # Default empty string
+        assert arr.get_index_data(2) == ""
     
     def test_set_index_int_array(self):
         arr = Array("int", 5)
