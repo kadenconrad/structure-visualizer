@@ -1,23 +1,17 @@
-def binary_search(nums, target):
-    if len(nums) == 1:
-        return 0
-    
-    l = 0
-    h = len(nums)-1
+from src.models._array import Array
 
-    mid = l + (h - l) // 2
-
-    if nums[mid] == target:
-        return mid
-    
-    else:
-        if nums[mid] < target:
-            return binary_search(nums[mid+1:h], target)
-        if nums[mid] > target:
-            return binary_search(nums[l:mid-1], target)
-        
-nums = [1, 2, 3, 4, 5]
-
-bs = binary_search(nums, 3)
-
-print(bs)
+def binary_search(nums: Array, target):
+    if nums.size == 0:
+        return -1
+    low = 0
+    high = nums.size - 1
+    while low <= high:
+        mid = low + (high - low) // 2
+        mid_value = nums.get_index_data(mid)
+        if mid_value == target:
+            return mid
+        elif mid_value < target:
+            low = mid + 1
+        else:
+            high = mid - 1
+    return -1
