@@ -1,5 +1,6 @@
 from .doublyLL import DoublyLL, DLLNode
 
+
 class Deque:
     def __init__(self):
         self.list = DoublyLL()
@@ -16,14 +17,14 @@ class Deque:
         popped_item = self.list.head.data
         self.list.remove_value(self.list.head)
         return popped_item
-    
+
     def pop_back(self):
         popped_item = self.list.tail.data
         self.list.remove_value(self.list.tail)
         return popped_item
-    
+
     def peek_front(self):
         return self.list.head.data
-    
+
     def peek_back(self):
         return self.list.tail.data

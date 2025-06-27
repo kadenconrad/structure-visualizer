@@ -1,5 +1,6 @@
 from .singly_LL import SinglyLL, SLLNode
 
+
 class Stack:
     def __init__(self):
         self.list = SinglyLL()
@@ -12,8 +13,6 @@ class Stack:
         popped_item = self.list.head.data
         self.list.remove_after(None)
         return popped_item
-    
+
     def peek(self):
         return self.list.head.data
-    
-

@@ -4,10 +4,12 @@ class DLLNode:
         self.next = None
         self.prev = None
 
+
 class DoublyLL:
     """
     Node params can be node or node's value
     """
+
     def __init__(self):
         self.head = None
         self.tail = None
@@ -85,7 +87,10 @@ class DoublyLL:
     def remove_value(self, cur_node):
         prev_node = cur_node.prev
         next_node = cur_node.next
-        cur_node.prev, cur_node.next = None, None  # clean up to reuse (if node was created as variable it won't be garbage collected)
+        cur_node.prev, cur_node.next = (
+            None,
+            None,
+        )  # clean up to reuse (if node was created as variable it won't be garbage collected)
         if next_node is not None:
             next_node.prev = prev_node
         if prev_node is not None:
@@ -97,7 +102,7 @@ class DoublyLL:
 
     def is_empty(self):
         return self.head is None
-    
+
     def size(self):
         if self.head is None:
             return 0

@@ -2,13 +2,20 @@ from src.models.queue import Queue
 from colorama import Fore, Back, Style
 from time import sleep
 
-COLOR_MAPPING = {"green": Back.LIGHTGREEN_EX, "blue": Back.LIGHTBLUE_EX, "yellow": Back.LIGHTYELLOW_EX, 
-                "red": Back.LIGHTRED_EX, "dark_green": Back.GREEN}
+COLOR_MAPPING = {
+    "green": Back.LIGHTGREEN_EX,
+    "blue": Back.LIGHTBLUE_EX,
+    "yellow": Back.LIGHTYELLOW_EX,
+    "red": Back.LIGHTRED_EX,
+    "dark_green": Back.GREEN,
+}
+
 
 class QueueVisualizer:
     def __init__(self, queue: Queue):
         self.queue = queue
-        print(f"""
+        print(
+            f"""
         Welcome to the Queue Visualizer! 
         The front of the queue is at the left, and the rear is at the right.\n
  
@@ -19,7 +26,8 @@ class QueueVisualizer:
               -{Back.YELLOW + Fore.WHITE} YELLOW: {Back.RESET + Fore.RESET} Currently in the queue; you're probably taking a little {Fore.YELLOW}*peek*{Style.RESET_ALL} at it.
 
               {Fore.LIGHTGREEN_EX}- BEST Ω(1) {Fore.LIGHTMAGENTA_EX}- AVG Θ(1) {Fore.LIGHTRED_EX}- WORST O(1){Style.RESET_ALL}
-              """)
+              """
+        )
 
     def visualize_queue(self):
         cur_node = self.queue.list.head
@@ -27,9 +35,13 @@ class QueueVisualizer:
             self.print_queue_element(cur_node.data, "green")
             sleep(0.5)
             cur_node = cur_node.next
-    
+
     def print_queue_element(self, element, color, end=" ", flush=True):
-        print(f"{Fore.WHITE + COLOR_MAPPING[color.lower()]}[ {str(element)} ]{Style.RESET_ALL}", end=end, flush=True)
+        print(
+            f"{Fore.WHITE + COLOR_MAPPING[color.lower()]}[ {str(element)} ]{Style.RESET_ALL}",
+            end=end,
+            flush=True,
+        )
 
     def visualize_enqueue(self, item):
         enqueued = self.queue.enqueue(item)
@@ -58,7 +70,7 @@ class QueueVisualizer:
         self.print_queue_element(dequeued, "red", end="\n")
         print(f"\nreturned →", end=" ", flush=True)
         self.print_queue_element(dequeued, "red", end="\n")
-    
+
     def visualize_peek(self):
         print(self.__str__())
         cur_node = self.queue.list.head
@@ -76,7 +88,6 @@ class QueueVisualizer:
 
     def __str__(self):
         return f"\n\nQUEUE: [Size: {self.queue.list.size()}]"
-
 
 
 if __name__ == "__main__":

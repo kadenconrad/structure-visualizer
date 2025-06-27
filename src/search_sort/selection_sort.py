@@ -1,5 +1,6 @@
 from src.models._array import Array
 
+
 def selection_sort(nums: Array):
     if nums.size <= 1:
         return nums
@@ -11,4 +12,4 @@ def selection_sort(nums: Array):
         temp = nums.get_index_data(i)
         nums.set_index(i, nums.get_index_data(cur_min))
         nums.set_index(cur_min, temp)
-    return nums # Θ(n^2), Ω(n^2), O(n^2)
+    return nums  # Θ(n^2), Ω(n^2), O(n^2)

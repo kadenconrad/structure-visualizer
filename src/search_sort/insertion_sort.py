@@ -1,5 +1,6 @@
 from src.models._array import Array
 
+
 def insertion_sort(nums: Array):
     if nums.size <= 1:
         return nums
@@ -10,4 +11,4 @@ def insertion_sort(nums: Array):
             nums.set_index(j, nums.get_index_data(j - 1))
             nums.set_index(j - 1, temp)
             j -= 1
-    return nums # Ω(n); Θ(n^2); O(n^2)
+    return nums  # Ω(n); Θ(n^2); O(n^2)

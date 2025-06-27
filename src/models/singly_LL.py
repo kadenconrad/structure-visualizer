@@ -82,7 +82,7 @@ class SinglyLL:
         else:
             target_node = target
 
-        if target_node is None: # remove head
+        if target_node is None:  # remove head
             next_node = self.head.next
             cur_next = self.head
             self.head.next = None
@@ -102,7 +102,7 @@ class SinglyLL:
 
     def is_empty(self):
         return self.head is None
-    
+
     def size(self):
         if self.head is None:
             return 0
