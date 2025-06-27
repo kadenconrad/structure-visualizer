@@ -1,13 +1,13 @@
 # Structure Visualizer
-This is a data structures visualizer project. The visualizers file is more crammed than I'd like it to be, but it's so I can provide context with less files.
+This is a data structures visualizer project.
 
-It started as a way for me to use the DSA notes that had been sitting on my computer from my old class. The linked list implementation is... controversial. Blame it on my textbook.
+It started as a way for me to use the DSA notes that had been sitting on my computer from my old class. The linked list implementation is... controversial. Blame it on my textbook, not me :D
 
 To clear up confusion:
 - None checks are generally for the *head node* not for the tail pointer. 
 - Most LL methods support using vals *or* premade node objects, so there's some extra clean up that usually would be done by the garbage collector.
 
-More info on the array class [here](#structure)
+More info on the array class [here](#notes)
 
 ### Setup
 1. Create and activate venv: 
@@ -75,7 +75,7 @@ More info on the array class [here](#structure)
     ├── test_linked_lists.py
     └── test_sorted.py
 ```
-**Notes**:
+### Notes:
 - `__init__.py`: All empty. Make sure these remain intact inside every subdirectory and on the root level. The codebase **will not work** otherwise.
 - `src/models/_array.py`: Python implementation of a *fixed-type*, *fixed-length* array, using the `ctypes` module. There are The actual, accessible array is found in the attribute `self.memory`. It is NOT dynamic and it IS NOT a Python `list` and therefore it cannot use Python list methods. It can ONLY use the methods created in the class.
 - `src/search_sort.py`: Contains `binary_search`, `selection_sort`, `insertion_sort`, `shell_sort`, `quicksort`, and `merge_sort` functions (and utility functions, i.e., `partition`).
